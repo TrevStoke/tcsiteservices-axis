@@ -19,10 +19,10 @@ handlers:
   static_dir: css
 
 - url: /depots
-  script: depots.app
+  script: main.app
 
 - url: /depots/add
-  script: depots.app
+  script: main.app
 
 - url: .*
   script: main.app
