@@ -2,7 +2,6 @@ from google.appengine.ext import db
 
 
 class UserAccount(db.Model):
-    """Models an application user."""
     user_id = db.StringProperty()
     user = db.UserProperty()
     is_axis_admin = db.BooleanProperty()
@@ -11,6 +10,7 @@ class UserAccount(db.Model):
 class Depot(db.Model):
     name = db.StringProperty()
     editor = db.ReferenceProperty(reference_class=UserAccount)
+
 
 class AccidentReport(db.Model):
     user_account = db.ReferenceProperty(reference_class=UserAccount)

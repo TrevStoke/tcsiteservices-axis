@@ -14,8 +14,12 @@ handlers:
 - url: /css
   static_dir: css
 
-- url: /depots/*
-  script: main.app
+- url: /depots/add
+  script: depots.app
+  login: admin
+
+- url: /depots
+  script: depots.app
   login: admin
 
 - url: .*
