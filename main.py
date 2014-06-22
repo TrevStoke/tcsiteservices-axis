@@ -22,5 +22,6 @@ class MainHandler(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/depots', MainHandler)
+    ('/depots', MainHandler),
+    ('/depots/add', MainHandler),
 ], debug=True)
