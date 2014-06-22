@@ -1,4 +1,5 @@
 from google.appengine.api import users
+from google.appengine.ext import db
 
 import webapp2
 import jinja2
@@ -27,9 +28,18 @@ class DepotHandler(webapp2.RequestHandler):
 
     def post(self):
         depot = Depot()
-        depot.name = self.request.get('depotname')
-        depot.put()
-        self.redirect('/depots')
+
+        try:
+            depot.name = self.request.get('depotname')
+            depot.put()
+            self.redirect('/depots')
+        except db.BadValueError:
+            template = JINJA_ENVIRONMENT.get_template('templates/depot_add.html')
+            template_values = {
+                'error_msg': 'Depot name cannot be empty.'
+            }
+            self.response.write(template.render(template_values))
+
 
 app = webapp2.WSGIApplication([
     ('/depots', DepotHandler),

@@ -1,5 +1,8 @@
 from google.appengine.ext import db
 
+def is_valid_depot_name(val):
+    if len(str(val).strip()) < 1:
+        raise db.BadValueError
 
 class UserAccount(db.Model):
     user_id = db.StringProperty()
@@ -8,7 +11,7 @@ class UserAccount(db.Model):
 
 
 class Depot(db.Model):
-    name = db.StringProperty()
+    name = db.StringProperty(validator=is_valid_depot_name)
     editor = db.ReferenceProperty(reference_class=UserAccount)
 
 
